@@ -14,9 +14,9 @@ struct Car {
     let seats: Int
     static let lowGear = 1 // Decided this is standard for all cars just so I could play with static
     let highGear: Int
-    var currentGear = 1 {
+    private(set) var currentGear = 1 {
         willSet {
-            print("Attempting to shift to \(newGear)")
+            print("Shifting from \(currentGear) to \(newValue)")
         }
         didSet {
             print("Gear is now \(currentGear)")
@@ -30,25 +30,32 @@ struct Car {
         self.highGear = carHighGear
     }
     
-    //method to change gears. is mutating
+    func shiftTrouble() {
+            print("Having trouble shifting from \(currentGear) to \(newGear)")
+    }
+    
+    // method to change gears. is mutating
+    // if I were to re-write this, I'd go with just one mutating function for shifting that accepted a positive or negative integer to trigger shifting up or down
     mutating func shiftUp(shift: Int) -> Bool {
         newGear = currentGear + shift
         if newGear < highGear {
             self.currentGear += shift
             return true
         } else {
-            print("Sorry, you can't shift up \(shift) gears to gear \(self.newGear).")
+            shiftTrouble()
+            print("Sorry, you can't shift up \(shift) to gear \(self.newGear).")
             return false
         }
     }
-    
+
     mutating func shiftDown(shift: Int) -> Bool {
         newGear = currentGear - shift
         if newGear > Car.lowGear {
             self.currentGear -= shift
             return true
         } else {
-            print("Sorry, you can't shift down \(shift) gears to \(self.newGear).")
+            shiftTrouble()
+            print("Sorry, you can't shift down \(shift) to gear \(self.newGear).")
             return false
         }
     }
