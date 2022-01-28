@@ -1,3 +1,3 @@
-# hws-checkpoint-06
+# 100DaysOfSwiftUI from HackingWithSwift.com
 
-100DaysOfSwiftUI from HackingWithSwift.com
+Collecting my notes and checkpoints
