@@ -1,6 +1,4 @@
 // checkpoint 6
-import Cocoa
-
 // create a struct to store information about a car. Include:
 //      - its model
 //      - number of seats
